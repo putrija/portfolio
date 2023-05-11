@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="title">Registrasi Form</div>
+      <form>
+        <div class="field">
+          <input id="nama-regex" type="text" required />
+          <label for="nama-regex">Nama</label>
+          <h6 id="my-nama"></h6>
+        </div><br>
+        <div class="field">
+          <input id="nik-regex" type="text" required />
+          <label for="nik-regex">NIK</label>
+          <h6 id="my-nik"></h6>
+        </div><br>
+        <div class="field">
+          <input id="nim-regex" type="text" required />
+          <label for="nim-regex">NIM</label>
+          <h6 id="my-nim"></h6>
+        </div><br>
+        <div class="field">
+          <input id="agama-regex" type="text" required />
+          <label for="agama-regex">Agama</label>
+          <h6 id="my-agama"></h6>
+        </div><br>
+        <div class="field">
+          <input id="pass-regex" type="text" required />
+          <label for="pass-regex" >Password</label>
+          <h6 id="my-pass"></h6>
+        </div><br>
+        <div class="field">
+          <input type="submit" value="Register" />
+        </div>
+      </form>
+    </div>
+
+    <script>
+      //regex nama
+      const namaRegex = document.getElementById('nama-regex')
+      const myNama = document.getElementById('my-nama')
+      const checkNama = (value) => {
+        const regex = /^[a-zA-Z]{2,}(?: [a-zA-Z]+){1,}$/
+        const isNama = regex.test(value)
+        if (isNama){
+          return true
+        } else{
+          return false
+        }
+      }
+      namaRegex.addEventListener('keyup', (e) => {
+        const value = e.target.value
+        const isNama =checkNama(value)
+        if (isNama){
+          myNama.innerHTML = 'Nama valid'
+        } else {
+          myNama.innerHTML = 'Nama tidak valid'
+        }
+      })
+
+      //regex nik
+      const nikRegex = document.getElementById('nik-regex')
+      const myNik = document.getElementById('my-nik')
+      const checkNik = (value) => {
+        const regex = /^\d+$/
+        const isNik = regex.test(value)
+        if (isNik){
+          return true
+        } else{
+          return false
+        }
+      }
+      nikRegex.addEventListener('keyup', (e) => {
+        const value = e.target.value
+        const isNik =checkNik(value)
+        if (isNik){
+          if (value.length == 16){
+              myNik.innerHTML = 'NIK berhasil'
+          } else if(value.length > 16){
+            myNik.innerHTML = 'NIK melebihi 16 Angka'
+          } else if(value.length < 16){
+            myNik.innerHTML = 'NIK kurang dari 16 Angka'
+          }
+        } else {
+          myNik.innerHTML = 'NIK harus angka'
+        }
+      })
+
+      //regex nim
+      const nimRegex = document.getElementById('nim-regex')
+      const myNim = document.getElementById('my-nim')
+      const checkNim = (value) => {
+        const regex = /^\d+$/
+        const isNim = regex.test(value)
+        if (isNim){
+          return true
+        } else{
+          return false
+        }
+      }
+      nimRegex.addEventListener('keyup', (e) => {
+        const value = e.target.value
+        const isNim =checkNim(value)
+        if (isNim){
+          if (value.length == 9){
+              myNim.innerHTML = 'NIM berhasil'
+          } else if(value.length > 9){
+            myNim.innerHTML = 'NIM melebihi 9 Angka'
+          } else if(value.length < 9){
+            myNim.innerHTML = 'NIM kurang dari 9 Angka'
+          }
+        } else {
+          myNim.innerHTML = 'NIM harus angka'
+        }
+      })
+
+      //regex agama
+      const agamaRegex = document.getElementById('agama-regex')
+      const myAgama = document.getElementById('my-agama')
+      const checkAgama = (value) => {
+        const regex = /^(Islam|islam|Kristen|kristen|Katolik|katolik|Hindu|hindu|Buddha|buddha|Konghucu|konghucu)$/
+        const isAgama = regex.test(value)
+        if (isAgama){
+          return true
+        } else{
+          return false
+        }
+      }
+      agamaRegex.addEventListener('keyup', (e) => {
+        const value = e.target.value
+        const isAgama =checkAgama(value)
+        if (isAgama){
+          myAgama.innerHTML = 'Agama valid'
+        } else {
+          myAgama.innerHTML = 'Agama tidak valid'
+        }
+      })
+
+      //regex password
+      const passRegex = document.getElementById('pass-regex')
+      const myPass = document.getElementById('my-pass')
+      const checkPass = (value) => {
+        const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{6,}$/
+        const isPass = regex.test(value)
+        if (isPass){
+          return true
+        } else{
+          return false
+        }
+      }
+      passRegex.addEventListener('keyup', (e) => {
+        const value = e.target.value
+        const isPass =checkPass(value)
+        if (value.length <= 8){
+          myPass.innerHTML = 'Password harus lebih dari 8'
+        } else{
+          if (isPass) {
+            myPass.innerHTML = 'Password berhasil'
+          } else {
+            myPass.innerHTML = 'Password harus memiliki setidaknya 1 uppercase, 1 lowercase, 1 angka, 1 karakter spesial'
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
